@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Servidor Pico</title>
+</head>
+<body>
+    <h1>Mensagens da Pico W</h1>
+    <div id="messages">
+        <!-- Mensagens serão exibidas aqui via JavaScript -->
+    </div>
+    
+    <script>
+        // Atualiza as mensagens a cada 2 segundos
+        setInterval(() => {
+            fetch('/get_messages')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('messages').innerHTML = 
+                        data.map(msg => `<p>${msg}</p>`).join('');
+                });
+        }, 2000);
+    </script>
+</body>
+</html>
